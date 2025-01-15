@@ -1,4 +1,4 @@
-# Gallery Projects
+# Gallery Projects - Flutter
 
 Este repositorio contiene dos proyectos independientes:
 
