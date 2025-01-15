@@ -1,4 +1,4 @@
-# gallery
+# Gallery
 
 A new Flutter project.
 
