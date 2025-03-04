@@ -2,7 +2,7 @@
 
 Este repositorio contiene dos proyectos independientes:
 
-- **main**: Disponible en la rama `main`.
+- **Flutter Project**: Disponible en la rama `main`.
 - **Flet Project**: Disponible en la rama `flet-project`.
 
 ### Cómo acceder a los proyectos
