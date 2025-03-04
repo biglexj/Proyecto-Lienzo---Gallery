@@ -1,0 +1,68 @@
+Cambiar el titulo en cada plataforma
+1. **Android:**
+   - **Archivo:** `android/app/src/main/AndroidManifest.xml`
+   - **Paso:** Busca la etiqueta `<application>` y cambia el valor del atributo `android:label`.
+   - **Ejemplo:**
+   ```xml
+   <application
+       android:label="Galería"
+       ... >
+   ```
+
+2. **iOS:**
+   - **Archivo:** `ios/Runner/Info.plist`
+   - **Paso:** Busca la clave `CFBundleName` o `CFBundleDisplayName` y cambia su valor.
+   - **Ejemplo:**
+   ```xml
+   <key>CFBundleName</key>
+   <string>Galería</string>
+   ```
+
+3. **macOS:**
+   - **Archivo:** `macos/Runner/Info.plist`
+   - **Paso:** Igual que en iOS, busca la clave `CFBundleName` o `CFBundleDisplayName` y cambia su valor.
+   - **Ejemplo:**
+   ```xml
+   <key>CFBundleName</key>
+   <string>Galería</string>
+   ```
+
+4. **Windows:**
+   - **Archivo:** `windows/runner/Runner.rc`
+   - **Paso:** Cambia los valores de `VALUE` como `FileDescription`, `InternalName`, `OriginalFilename`, `ProductName`.
+   - **Ejemplo:**
+   ```cpp
+   VALUE "FileDescription", "Galería" "\0"
+   VALUE "InternalName", "Galería" "\0"
+   VALUE "OriginalFilename", "Galería.exe" "\0"
+   VALUE "ProductName", "Galería" "\0"
+   ```
+   Tambien en el directorio runner/main.cpp
+   
+   if (!window.Create(L"Galeria", origin, size)) {
+    return EXIT_FAILURE;
+  }
+
+5. **Linux:**
+   - **Archivo:** `linux/my_application.cc`
+   - **Paso:** Busca la función `gtk_window_set_title()` y cambia el segundo parámetro a "Galería".
+   - **Ejemplo:**
+   ```cpp
+   gtk_window_set_title(window, "Galería");
+   ```
+
+6. **Flutter (General):**
+   - **Archivo:** `lib/main.dart`
+   - **Paso:** Cambia el valor del atributo `title` en el widget `MaterialApp` o `CupertinoApp`.
+   - **Ejemplo:**
+   ```dart
+   MaterialApp(
+     title: 'Galería',
+     home: HomeScreen(),
+     // Otros atributos
+   )
+   ```
+   flutter pub run flutter_launcher_icons:main
+
+   flutter clean
+   flutter pub get

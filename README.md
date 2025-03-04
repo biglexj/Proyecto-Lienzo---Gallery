@@ -1,8 +1,8 @@
-# Gallery Projects - Flet
+# Gallery Projects - Flutter
 
 Este repositorio contiene dos proyectos independientes:
 
-- **Flutter Project**: Disponible en la rama `flutter-project`.
+- **main**: Disponible en la rama `main`.
 - **Flet Project**: Disponible en la rama `flet-project`.
 
 ### Cómo acceder a los proyectos
