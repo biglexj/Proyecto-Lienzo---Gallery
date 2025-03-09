@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mime/mime.dart';
 import 'dart:io';
-import '../../logic/full_screen_image.dart';
+import '../../logic/functions/full_screen_image.dart';
 
 class Images extends StatelessWidget {
   final String? directory;
@@ -19,12 +19,22 @@ class Images extends StatelessWidget {
 
   Widget _buildImageGrid(String path) {
     final dir = Directory(path);
-    final List<FileSystemEntity> files = dir.listSync().where((file) {
-      final mimeType = lookupMimeType(file.path);
-      return mimeType?.startsWith('image/') ?? false;
-    }).toList();
+    final List<File> files = dir
+        .listSync()
+        .where((file) {
+          if (file is! File) return false;
+          final mimeType = lookupMimeType(file.path);
+          return mimeType?.startsWith('image/') ?? false;
+        })
+        .map((file) => File(file.path))
+        .toList();
+
+    if (files.isEmpty) {
+      return const Center(child: Text('No hay imágenes en esta carpeta'));
+    }
 
     return GridView.builder(
+      padding: const EdgeInsets.all(8.0),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
         crossAxisSpacing: 4.0,
@@ -34,18 +44,33 @@ class Images extends StatelessWidget {
       itemBuilder: (context, index) {
         final file = files[index];
         return GestureDetector(
-          onTap: () => _openImage(context, file.path),
-          child: Image.file(File(file.path), fit: BoxFit.cover),
+          onTap: () => _openImage(context, file.path, files),
+          child: Hero(
+            tag: file.path,
+            child: Image.file(
+              file,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                return const Center(
+                  child: Icon(Icons.broken_image, color: Colors.grey),
+                );
+              },
+            ),
+          ),
         );
       },
     );
   }
 
-  void _openImage(BuildContext context, String path) {
+  void _openImage(BuildContext context, String path, List<File> images) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => FullScreenImage(imagePath: path),
+        builder: (context) => FullScreenImage(
+          imagePath: path,
+          imageList: images.map((file) => file.path).toList(),
+          initialIndex: images.indexWhere((file) => file.path == path),
+        ),
       ),
     );
   }

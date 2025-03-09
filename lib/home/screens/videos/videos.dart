@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mime/mime.dart';
 import 'dart:io';
-import '../../logic/video_player_screen.dart';
+import '../../logic/functions/video_player_screen.dart';
 
 class Videos extends StatelessWidget {
   final String? directory;

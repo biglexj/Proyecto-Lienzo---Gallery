@@ -108,18 +108,22 @@ class TimelineView extends StatelessWidget {
       itemBuilder: (context, index) {
         final image = images[index];
         return GestureDetector(
-          onTap: () => _openImage(context, image.path),
+          onTap: () => _openImage(context, image.path, images),
           child: Image.file(image, fit: BoxFit.cover),
         );
       },
     );
   }
 
-  void _openImage(BuildContext context, String path) {
+  void _openImage(BuildContext context, String path, List<File> images) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => FullScreenImage(imagePath: path),
+        builder: (context) => FullScreenImage(
+          imagePath: path,
+          imageList: images.map((file) => file.path).toList(),
+          initialIndex: images.indexWhere((file) => file.path == path),
+        ),
       ),
     );
   }

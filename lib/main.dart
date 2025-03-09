@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gallery/home/home.dart';  // Updated import path
-
+import 'package:gallery/home/home.dart'; // Updated import path
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {

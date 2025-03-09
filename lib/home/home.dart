@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'dart:io';
 import 'screens/home/home_screens.dart';
+import 'screens/buttons_top/buttons.dart';
 import 'screens/images/images.dart';
 import 'screens/videos/videos.dart';
 import 'screens/music/music.dart';
@@ -64,18 +65,36 @@ class _MyHomePageState extends State<HomePage> {
     }
   }
 
+  void _handleSearch(String query) {
+    // Implementar la lógica de búsqueda aquí
+    print('Buscando: $query');
+  }
+
+  void _handleCameraPressed() {
+    // Implementar la lógica de la cámara aquí
+    print('Cámara presionada');
+  }
+
+  void _handleMenuItemSelected(String value) {
+    switch (value) {
+      case 'ajustes':
+        // Implementar navegación a ajustes
+        print('Navegando a ajustes');
+        break;
+      case 'acerca_de':
+        // Implementar navegación a acerca de
+        print('Navegando a acerca de');
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Galeria'),
-        actions: [
-          if (_directories[_selectedIndex] != 'Inicio')
-            IconButton(
-              icon: Icon(Icons.refresh),
-              onPressed: () => setState(() {}),
-            ),
-        ],
+      appBar: CustomAppBar(
+        onSearch: _handleSearch,
+        onCameraPressed: _handleCameraPressed,
+        onMenuItemSelected: _handleMenuItemSelected,
       ),
       body: Column(
         children: [
