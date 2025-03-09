@@ -1,6 +1,0 @@
-.venv/
-.vscode/
-../gallery_Flutter/
-__pycache__/
-*.pyc
-experimental/
